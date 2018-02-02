@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello Fact</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+     
+    <div class="container">
+   <div style="height: 20px;background-color: yellow;">
+    </div>
+    	<img alt="" src="customer-icon.png" height="100px;"/>
+      <H4>Name : </H4>
+    <form  name="validateForm">
+   			<input type="text"  class="form-control" name="tname" id="tname" style="width: 300px;"  onkeypress="clearText();"/>
+   			 <br/><br/>
+   			<input type="button"  class="btn btn-primary"  value="welcome" id="welcome"  onclick="validate();"/>
+   			 <br/><br/>
+   			 <span id="message" style="color: red;font-size: 16px;font-weight: bold;"></span>
+   </form>
+   </div>
+  <script>
+           		
+  
+	  //Hoisting
+  		   //let 
+           function validate() {
+        	     var num; 
+        	    //document.getElementById("tname").value;
+  				 num=document.validateForm.tname.value;
+  				 
+  				var xhttp = new XMLHttpRequest();
+  			    xhttp.onreadystatechange = function() {
+  			 				   if (this.readyState == 4 && this.status == 200) {
+  			  					   var response = this.responseText;
+  			  					   console.log("__@_@eeeeeeeeeeeee_@");
+  			  					    var jsobject=JSON.parse(response);
+  			  					   console.log(jsobject);
+  			  				    	 document.getElementById("message").innerHTML="Factorial of  "+num+" is  "+jsobject.result;
+  			   				 }
+  			  };
+  			  xhttp.open("GET", "http://localhost:8900/api/v1/fact?num="+num, true);
+  			  xhttp.send();
+         	     //console.log("Factorial of  "+num+" is  "+sum); 				
+  			}
+       	function clearText()  {
+     		 console.log("))#)##))");
+     		 document.getElementById("message").innerHTML="";
+     	}
+         
+    		 //  alert("OEIEIEIEI");
+  		   //TypeScript
+  </script>
+</body>
+</html>

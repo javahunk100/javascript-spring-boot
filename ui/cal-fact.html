@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello Fact</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body onload="loadData();">
+     
+    <div class="container">
+   <div style="height: 20px;background-color: yellow;">
+    </div>
+    	<img alt="" src="customer-icon.png" height="100px;"/>
+      <H4>Name : </H4>
+    <form  name="validateForm">
+   			<input type="text"  class="form-control" name="tname" id="tname" style="width: 300px;display: inline;margin-right: 50px;"  onkeypress="clearText();"/>
+   			
+   			<input type="button"  class="btn btn-primary"  value="Factorial" id="welcome"  onclick="validate();"/>
+   			 <br/><br/>
+   			 <span id="message" style="color: red;font-size: 16px;font-weight: bold;"></span>
+   </form>
+   
+      <H4>Fact Details : </H4>
+      <hr/>
+    <table class="table table-striped">
+        <thead>
+            <tr style="background-color: #ebeeff;">
+                <th>Row</th>
+                <th>Num</th>
+                <th>Result</th>
+                <th>Rank</th>
+                <th>Doc</th>
+                  <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tcontents">
+            <tr>
+                <td>1</td>
+                <td>John</td>
+                <td>Carter</td>
+                <td>johncarter@mail.com</td>
+                   <td>Carter</td>
+            </tr>
+        </tbody>
+    </table>
+   </div>
+  <script>
+  		
+  function loadData() {
+		var xhttp = new XMLHttpRequest();
+	    xhttp.onreadystatechange = function() {
+	 				   if (this.readyState == 4 && this.status == 200) {
+	  					  		  var response = this.responseText;
+	  						       console.log("__@_@eeeeeeeeeeeee_@");
+	  					   		  var factsObject=JSON.parse(response);
+	  					  		  console.log(factsObject);
+	  					  		  var hcontents="";
+	  					  		  for(var x=0;x<factsObject.length;x++) {
+	  					  				var fact=factsObject[x];
+	  					  				hcontents=hcontents+'<tr>';
+	  					  				hcontents=hcontents+' <td>'+(x+1)+'</td>';
+	  					  				hcontents=hcontents+'<td>'+fact.num+'</td>';
+	  					  		  	  hcontents=hcontents+'<td>'+fact.result+'</td>';
+	  					  		   	  hcontents=hcontents+'<td>'+fact.version+'</td>';
+	  					  				 hcontents=hcontents+'<td>'+fact.doc+'</td>';
+	  					  				hcontents=hcontents+'<td><img src="delete.png" height="30px;"/>/<img src="edit.png" height="30px;"/></td>';
+	  					  				 
+	  									hcontents=hcontents+'</tr>';
+	  					    }
+	  					  	//tcontents is the id of body	  
+	  				    	$("#tcontents").html(hcontents);	
+	  				    	
+	   				 }
+	  };
+	  xhttp.open("GET", "http://localhost:8900/api/v1/facts", true);
+	  xhttp.send();
+	     //console.log("Factorial of  "+num+" is  "+sum); 				
+	}
+  
+           function validate() {
+        	     var num; 
+        	    //document.getElementById("tname").value;
+  				 num=document.validateForm.tname.value;
+  				var xhttp = new XMLHttpRequest();
+  			    xhttp.onreadystatechange = function() {
+  			 				   if (this.readyState == 4 && this.status == 200) {
+  			  					   var response = this.responseText;
+  			  					   console.log("__@_@eeeeeeeeeeeee_@");
+  			  					    var jsobject=JSON.parse(response);
+  			  					   console.log(jsobject);
+  			  					loadData();
+  			  				    	 document.getElementById("message").innerHTML="Factorial of  "+num+" is  "+jsobject.result;
+  			   				 }
+  			  };
+  			  xhttp.open("GET", "http://localhost:8900/api/v1/facts/"+num, true);
+  			  xhttp.send();
+         	     //console.log("Factorial of  "+num+" is  "+sum); 				
+  			}
+       	function clearText()  {
+     		 console.log("))#)##))");
+     		 document.getElementById("message").innerHTML="";
+     	}
+    		 //  alert("OEIEIEIEI");
+  		   //TypeScript
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello Fact</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+     
+    <div class="container">
+   <div style="height: 20px;background-color: yellow;">
+    </div>
+    	<img alt="" src="customer-icon.png" height="100px;"/>
+      <H4>Fact Details : </H4>
+      <hr/>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Row</th>
+                <th>Num</th>
+                <th>Result</th>
+                <th>Rank</th>
+                <th>Doc</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>John</td>
+                <td>Carter</td>
+                <td>johncarter@mail.com</td>
+                   <td>Carter</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Peter</td>
+                <td>Parker</td>
+                <td>peterparker@mail.com</td>
+                 <td>Carter</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>John</td>
+                <td>Rambo</td>
+                <td>johnrambo@mail.com</td>
+                 <td>Carter</td>
+            </tr>
+        </tbody>
+    </table>
+   </div>
+  <script>
+           		
+  
+	  //Hoisting
+  		   //let 
+           function validate() {
+        	     var num; 
+        	    //document.getElementById("tname").value;
+  				 num=document.validateForm.tname.value;
+  				 
+  				var xhttp = new XMLHttpRequest();
+  			    xhttp.onreadystatechange = function() {
+  			 				   if (this.readyState == 4 && this.status == 200) {
+  			  					   var response = this.responseText;
+  			  					   console.log("__@_@eeeeeeeeeeeee_@");
+  			  					    var jsobject=JSON.parse(response);
+  			  					   console.log(jsobject);
+  			  				    	 document.getElementById("message").innerHTML="Factorial of  "+num+" is  "+jsobject.result;
+  			   				 }
+  			  };
+  			  xhttp.open("GET", "http://localhost:8900/api/v1/fact?num="+num, true);
+  			  xhttp.send();
+         	     //console.log("Factorial of  "+num+" is  "+sum); 				
+  			}
+       	function clearText()  {
+     		 console.log("))#)##))");
+     		 document.getElementById("message").innerHTML="";
+     	}
+         
+    		 //  alert("OEIEIEIEI");
+  		   //TypeScript
+  </script>
+</body>
+</html>
