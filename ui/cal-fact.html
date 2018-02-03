@@ -31,6 +31,7 @@
                 <th>Result</th>
                 <th>Rank</th>
                 <th>Doc</th>
+                   <th>Photo</th>
                   <th>Action</th>
             </tr>
         </thead>
@@ -45,6 +46,40 @@
         </tbody>
     </table>
    </div>
+   
+   
+   <div id="editFactModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Factorial Page</h4>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+            <label for="inputEmail">Num</label>
+            <input type="text" name="enum" id="enum" class="form-control" placeholder="Num" required>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Result</label>
+            <input type="text" class="form-control" id="tresult" placeholder="Result" required>
+        </div>
+        
+             <div class="form-group">
+            <label for="inputPassword">Image</label>
+            <input type="file" class="form-control" id="file" name="file" placeholder="Result">
+              <img src="http://localhost:8900/api/v1/factimage/3"/>
+            
+        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Update changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+   
   <script>
   		
   function loadData() {
@@ -58,14 +93,14 @@
 	  					  		  var hcontents="";
 	  					  		  for(var x=0;x<factsObject.length;x++) {
 	  					  				var fact=factsObject[x];
-	  					  				hcontents=hcontents+'<tr>';
+	  					  				hcontents=hcontents+'<tr  id=row'+(x+1)+'>';
 	  					  				hcontents=hcontents+' <td>'+(x+1)+'</td>';
 	  					  				hcontents=hcontents+'<td>'+fact.num+'</td>';
 	  					  		  	  hcontents=hcontents+'<td>'+fact.result+'</td>';
 	  					  		   	  hcontents=hcontents+'<td>'+fact.version+'</td>';
 	  					  				 hcontents=hcontents+'<td>'+fact.doc+'</td>';
-	  					  				hcontents=hcontents+'<td><img src="delete.png" height="30px;"/>/<img src="edit.png" height="30px;"/></td>';
-	  					  				 
+	  					  			 hcontents=hcontents+'<td><img src="http://localhost:8900/api/v1/factimage/'+fact.num+'"  height="30px;"></td>';
+	  					  				hcontents=hcontents+'<td><img src="delete.png" height="30px;"/>/<img src="edit.png" height="30px;"  onclick="editRow('+fact.num+');"/></td>';
 	  									hcontents=hcontents+'</tr>';
 	  					    }
 	  					  	//tcontents is the id of body	  
@@ -77,6 +112,11 @@
 	  xhttp.send();
 	     //console.log("Factorial of  "+num+" is  "+sum); 				
 	}
+  
+  		 function editRow(num){
+  			 console.log("@@)@)@ = "+num);
+  				$("#editFactModal").modal('show');
+  		 }
   
            function validate() {
         	     var num; 

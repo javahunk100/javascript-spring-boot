@@ -2,6 +2,8 @@ package com.spring.boot.rest.api.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class FactMessage {
 	private int num;
 	private String result;
@@ -59,6 +61,7 @@ public class FactMessage {
 	/**
 	 * @return the doc
 	 */
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	public Date getDoc() {
 		return doc;
 	}
